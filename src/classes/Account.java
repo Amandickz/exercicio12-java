@@ -9,10 +9,9 @@ public class Account {
     private double balance;
     private double withdrawLimit;
 
-    public Account(Integer number, String holder, double withdrawLimit) {
+    public Account(Integer number, String holder) {
         this.number = number;
         this.holder = holder;
-        this.withdrawLimit = withdrawLimit;
     }
 
     public Integer getNumber() {
@@ -53,12 +52,18 @@ public class Account {
     }
 
     public void deposit(double amount) {
+        if(amount <= 0) {
+            throw new AccountExceptions("O valor de deposito deve ser maior que zero!");
+        }
         this.balance += amount;
     }
 
     public void withdraw(double amount) {
         if(amount > withdrawLimit) {
-            throw new AccountExceptions("O valor solicitado é maior que o limite de saque da conta!");
+            throw new AccountExceptions("Erro de saque: O valor solicitado é maior que o limite de saque da conta!");
+        }
+        if(amount < balance) {
+            throw new AccountExceptions("Erro de saque: Valor insuficiente para saque!");
         }
         this.balance -= amount;
     }

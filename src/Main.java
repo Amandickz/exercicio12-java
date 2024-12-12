@@ -26,7 +26,7 @@ public class Main {
             System.out.print("Limite de Saque da Conta: ");
             withdrawalLimit = scan.nextDouble();
 
-            Account account = new Account(number, holder, withdrawalLimit);
+            Account account = new Account(number, holder);
             account.deposit(initialBalance);
 
             System.out.print("\nDigite o valor de saque: ");
